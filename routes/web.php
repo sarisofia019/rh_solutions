@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\ValidacionController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Usuario\UsuarioAuthController;
+use App\Http\Controllers\Usuario\SolicitarController;
+use App\Http\Controllers\Admin\SolicitudController;
 
 
 
@@ -30,15 +32,15 @@ Route::post('/usuario/login', [UsuarioAuthController::class, 'login'])->name('us
 Route::post('/usuario/logout', [UsuarioAuthController::class, 'logout'])->name('usuario.logout');
 
 
-// Ruta protegida
+// Ruta protegida para el usuario
 Route::middleware('auth:usuario')->group(function () {
     Route::get('/usuario/dashboard', function () {
         return view('user.dashboard'); // crea esta vista también
     })->name('usuario.dashboard');
+    Route::get('/solicitar',[SolicitarController::class,'view'])->name('user.solicitar');
 });
 
 //-------------------------------------------------------------------------------------------------//
-
 // --------------------- Recuperación de contraseña ----------------------------//
 
 // 1. Mostrar formulario para ingresar la cédula
@@ -90,6 +92,8 @@ Route::middleware('auth:admin')->group(function () {
 
     //ruta para enlazar municipio con departamento
     Route::get('/municipios/{idDepartamento}', [RelacionesController::class, 'getMunicipios']);
+    // ruta para las solicitudes y generar certificado
+    Route::get('/solicitudes',[SolicitudController::class,'view'])->name('admin.solicitud');
 
 });
 //////////////////////////////////////////////////////////////////////////////////////////////////

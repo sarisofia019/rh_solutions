@@ -17,6 +17,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/646ac4fad6.js" crossorigin="anonymous"></script>
+     <!-- CSS externo -->
+    <link rel="stylesheet" href= "{{asset('css/solicitar.css')}}" >
+
+    <!-- Bootstrap y DataTables (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
 </head>
 
 <body>
@@ -62,7 +68,7 @@
                     </a>
                     <div class="collapse ms-5" id="submenuCertificados">
                         <ul class="list-unstyled">
-                            <li><a class="nav-link px-0" href="#"><i class="fas fa-check-circle me-2"></i> Solicitar Certificados </a></li>
+                            <li><a class="nav-link px-0" href="{{route('user.solicitar')}}"><i class="fas fa-check-circle me-2"></i> Solicitar Certificados </a></li>
                         </ul>
                     </div>
                 </li>
@@ -157,6 +163,7 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

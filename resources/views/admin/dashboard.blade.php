@@ -36,6 +36,13 @@
     <script src="https://kit.fontawesome.com/646ac4fad6.js" crossorigin="anonymous"></script>
     {{--script slect---}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/6e295b2b78.js" crossorigin="anonymous"></script>
+
+    <!--datatable-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.bootstrap4.css">
 </head>
 
 <body>
@@ -55,7 +62,7 @@
         <div class="sidebar-nav d-flex flex-column h-100">
             <ul class="nav flex-column flex-grow-1">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">
+                    <a class="nav-link active" href="{{route('admin.dashboard')}}">
                         <i class="fas fa-home me-2"></i> Inicio
 
                     </a>
@@ -98,7 +105,7 @@
                         <ul class="list-unstyled">
                             <li><a class="nav-link px-0" href=""><i class="fas fa-file-signature me-2"></i> Generar Certificados </a>
                             </li>
-                            <li><a class="nav-link px-0" href="#"><i class="fas fa-check-circle me-2"></i> Autorizar Certificados </a></li>
+                            <li><a class="nav-link px-0" href="{{route('admin.solicitud')}}"><i class="fas fa-check-circle me-2"></i> Autorizar Certificados </a></li>
                         </ul>
                     </div>
                 </li>
