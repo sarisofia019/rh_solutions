@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Arl;
-use App\Models\Cargo;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 class Usuario extends Authenticatable
 {
-    use HasFactory, Notifiable;
 
-    protected $table = 'usuarios';
+use HasFactory, Notifiable;
+protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';
     public $incrementing = true;
     protected $keyType = 'int';
@@ -45,43 +43,37 @@ class Usuario extends Authenticatable
         'id_arl',
         'id_caj_compen'
     ];
-    // relaciones
-    public function arl(){
-    return $this->belongsTo(Arl::class, 'id_arl', 'id_arl');
-    }
-    public function cargo(){
-    return $this->belongsTo(Cargo::class, 'id_cargo', 'id_cargo');
-    }
+public function eps(){
+    return $this->belongsTo(Eps::class,'id_eps');
+}
 
-    // pendiente contrato
-    // pendiente documentos
+public function pensiones(){
+    return $this->belongsTo(Pension::class,'id_pension');
+}
+public function arl(){
+    return $this->belongsTo(Arl::class,'id_arl');
+}
+public function cargos(){
+    return $this->belongsTo(Cargo::class,'id_cargo');
+}
 
-    public function dependencia(){
-    return $this->belongsTo(Dependencia::class, 'id_dependencia', 'id_dependencia');
-    }
-    public function eps(){
-    return $this->belongsTo(Eps::class, 'id_eps', 'id_eps');
-    }
-    public function estado(){
-    return $this->belongsTo(EstadoUsuario::class, 'id_estado', 'id_estado');
-    }
-    public function municipio(){
-    return $this->belongsTo(Municipio::class, 'id_municipio', 'id_municipio');
-    }
-    public function pension(){
-    return $this->belongsTo(Pension::class, 'id_pension', 'id_pension');
-    }
-    // relacion muchos a muchos
-    public function profesiones(){
-    return $this->belongsToMany(Profesion::class, 'usuarios_profesion', 'id_usuario', 'id_profesion')
-                ->withPivot('numero_registro_profesional');
-    }
-    public function departamento(){
-        return $this->belongsTo(Departamento::class, 'id_departamento', 'id_departamento');
-    }
+public function estado(){
+    return $this->belongsTo(EstadoUsuario::class,'id_estado');
+}
 
-    public function cajaCompensacion(){
-        return $this->belongsTo(CajaCompensacion::class, 'id_caj_compensacion', 'id_caj_compensacion');
-    }
+public function cajaCompensacion(){
+    return $this->belongsTo(CajaCompensacion::class,'id_caj_compen');
+}
+
+public function departamentos(){
+    return $this->belongsTo(Departamento::class,'id_departamento');
+}
+public function municipio(){
+    return $this->belongsTo(Municipio::class,'id_municipio');
+}
+
+public function profesiones(){
+    return $this->belongsTo(Profesion::class,'id_profesion');
+}
 
 }

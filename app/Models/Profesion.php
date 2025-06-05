@@ -2,19 +2,27 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Profesion extends Model
 {
-    protected $table = 'profesion';
-    protected $primaryKey = 'id_profesion';
-    public $timestamps = false;
-    protected $fillable = ['nom_profesion', 'descripcion']; // futuros crud
+    use HasFactory;
 
-    // relacion muchos a muchos
     public function usuarios(){
-    return $this->belongsToMany(Usuario::class, 'usuarios_profesion', 'id_profesion', 'id_usuario')
-                ->withPivot('numero_registro_profesional');
+        return $this-> hasMany(Usuario::class,'id_usuario' );
+
     }
 
+
+    protected $table = 'profesion';
+
+    protected $primaryKey = 'id_profesion';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'id_profesion',
+        'nom_profesion',
+    ];
 }

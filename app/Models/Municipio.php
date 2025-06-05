@@ -1,17 +1,33 @@
 <?php
 
 namespace App\Models;
-use App\Models\Departamento;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Municipio extends Model
 {
+    use HasFactory;
+
+    public function usuarios()
+    {
+        return $this->hasMany(Usuario::class, 'id_usuario');
+
+    }
+
+
     protected $table = 'municipio';
-    protected $primaryKey = 'id_municipio';
+
+    protected $primaryKey='id_municipio';
+
     public $timestamps = false;
 
-    public function departamento()
-    {
-        return $this->belongsTo(Departamento::class, 'id_departamento', 'id_departamento');
-    }
+    protected $fillable = [
+        'id_municipio',
+        'nom_municipio',
+        'id_departamento',
+    ];
+
 }
+
+

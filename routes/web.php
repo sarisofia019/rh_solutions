@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\UsuarioController;
-use App\Http\Controllers\Admin\ContratoController;
+use App\Http\Controllers\Admin\CrudController;
+use App\Http\Controllers\Admin\RelacionesController;
+use App\Http\Controllers\Admin\ValidacionController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Usuario\UsuarioAuthController;
@@ -62,42 +63,33 @@ Route::post('password/update', [PasswordResetController::class, 'updatePassword'
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     // Aquí puedes agregar más rutas de admin protegidas
+    //ruta para generar vista de crud
+    // ----------------- rutas crud --------------------//
+    Route::get('/lista-usuarios', [CrudController::class,'index'])->name( 'crud.index');
+    //Ruta para botn crear
+    Route::post('/registrar-usuario', [CrudController::class,'create'])->name( 'GestionarUsuario.create');
 
-    // ruta para la lista
-    Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+    //Ruta para boton actualizar
+    Route::post('/usuarios/actualizar/{id}', [CrudController::class,'update'])->name( 'GestionarUsuario.update');
 
-    // esta ruta llama al controlador UsuarioController y se trae el reponse JSON
-    Route::get('/admin/usuarios/{id}', [UsuarioController::class, 'obtenerUsuario'])->name('usuarios.obtener');
+    //Ruta para boton eliminar
+    Route::get('/usuarios/{id}/eliminar', [CrudController::class, 'delete'])
+        ->name('GestionarUsuario.delete');
 
-    // eliminar
-    Route::delete('/admin/usuarios/{id}', [UsuarioController::class, 'eliminarUsuario'])->name('usuarios.eliminar');
+    // Ruta para relacionesController
+    Route::get('/lista', [RelacionesController::class, 'index']);
 
-    // buscar
-    Route::get('/admin/usuarios/buscar', [UsuarioController::class, 'buscarUsuarios'])->name('usuarios.buscar');
+    //Ruta paara validar con metodo ajax modal crear
+    Route::post('/validar-documento', [ValidacionController::class, 'validarDocumento'])->name('validarcrear.documento');
+    Route::post('/validar-numerocelular', [ValidacionController::class, 'validarCelular'])->name('validarcrear.celular');
+    Route::post('/validar-correos', [ValidacionController::class, 'validarCorreo'])->name('validarcrear.correo');
+    Route::post('/validar-contraseñas', [ValidacionController::class, 'validarContraseña'])->name('validarcrear.contraseña');
 
-    // editar
-    Route::put('/admin/usuarios/editar/{id}', [UsuarioController::class, 'editarUsuario'])->name('usuarios.editar');
+    //Ruta para validar con metodo ajax modal editar
+    Route::post('/validar-campo', [ValidacionController::class, 'validarCampo'])->name('validar.campo');
 
-    // habilitar e inhabilitar
-    Route::post('/admin/usuarios/inhabilitar/{id}', [UsuarioController::class, 'inhabilitarUsuario'])->name('usuarios.inhabilitar');
-    Route::post('/admin/usuarios/habilitar/{id}', [UsuarioController::class, 'habilitarUsuario'])->name('usuarios.habilitar');
-
-    // Listar contratos
-    Route::get('/admin/contratos', [ContratoController::class, 'index'])->name('contratos.index');
-
-    // Crear contrato
-    Route::post('/admin/contratos', [ContratoController::class, 'store'])->name('contratos.store');
-
-    // Editar contrato
-    Route::put('/admin/contratos/{id}', [ContratoController::class, 'update'])->name('contratos.update');
-
-    // Eliminar contrato
-    Route::delete('/admin/contratos/{id}', [ContratoController::class, 'destroy'])->name('contratos.destroy');
-
-    // Generar certificado en PDF
-    Route::get('/admin/contratos/certificado/{id}', [ContratoController::class, 'generarCertificado'])->name('contratos.certificado');
-
-
+    //ruta para enlazar municipio con departamento
+    Route::get('/municipios/{idDepartamento}', [RelacionesController::class, 'getMunicipios']);
 
 });
 //////////////////////////////////////////////////////////////////////////////////////////////////

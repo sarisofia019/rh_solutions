@@ -2,13 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Arl extends Model
 {
-    //
-    protected $table = 'arl'; // Nombre exacto de la tabla en la BD
-    protected $primaryKey = 'id_arl'; // Clave primaria
-    public $timestamps = false; // Desactivar timestamps porque solo leerás datos
-}
+    use HasFactory;
 
+    public function usuarios(){
+        return $this-> hasMany(Usuario::class,'id_usuario' );
+
+    }
+    protected $table = 'arl';
+
+    protected $primaryKey = 'id_arl';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'id_arl',
+        'nom_arl',
+    ];
+}

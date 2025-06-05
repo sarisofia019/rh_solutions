@@ -5,6 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') Panel de Usuario - RH Solutions</title>
+    {{---michels---}}
+      <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/6e295b2b78.js" crossorigin="anonymous"></script>
+    <!-- Enlace a css externo -->
+    <link rel="stylesheet" href="{{ asset('css/gestionarUsuario.css') }}">
+
+    <!--css responsive-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.4/css/responsive.bootstrap4.css">
+
+    <!--datatable-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.bootstrap4.css">
+    {{---michels---}}
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -17,6 +34,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/646ac4fad6.js" crossorigin="anonymous"></script>
+    {{--script slect---}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -46,7 +65,7 @@
                             </a>
                             <div class="collapse ms-5" id="submenuUsuarios">
                                 <ul class="list-unstyled">
-                                    <li><a class="nav-link px-0" href="#"><i class="fas fa-eye me-2"></i> Lista de usuarios</a></li>
+                                    <li><a class="nav-link px-0" href="{{route('crud.index')}}"><i class="fas fa-eye me-2"></i> Lista de usuarios</a></li>
                                     <li><a class="nav-link px-0" href="#"><i class="fas fa-user-plus me-2"></i> Agregar cargo</a></li>
                                 </ul>
                             </div>
@@ -77,7 +96,7 @@
                     </a>
                     <div class="collapse ms-5" id="submenuCertificados">
                         <ul class="list-unstyled">
-                            <li><a class="nav-link px-0" href="{{route('contratos.index')}}"><i class="fas fa-file-signature me-2"></i> Generar Certificados </a>
+                            <li><a class="nav-link px-0" href=""><i class="fas fa-file-signature me-2"></i> Generar Certificados </a>
                             </li>
                             <li><a class="nav-link px-0" href="#"><i class="fas fa-check-circle me-2"></i> Autorizar Certificados </a></li>
                         </ul>
@@ -125,8 +144,7 @@
         <div class="dropdown ms-auto">
             <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" role="button"
                 id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="me-2 fw- fs-5 text-dark">{{ Auth::guard('admin')->user()->pri_nombre . ' ' . Auth::guard('admin')->user()->pri_apellido }}
-</span>
+                <span class="me-2 fw- fs-5 text-dark">{{ Auth::guard('admin')->user()->pri_nombre . ' ' . Auth::guard('admin')->user()->pri_apellido }}</span>
                 <i class="fas fa-user-circle fa-2x text-primary"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
@@ -142,9 +160,6 @@
             </ul>
         </div>
     </div>
-
-
-
     <h1 class="mb-4"></h1>
     <!--contenido-->
     <div class="main-content ">
@@ -166,12 +181,9 @@
             sidebar.classList.remove('active');
         });
     </script>
-
-
-
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

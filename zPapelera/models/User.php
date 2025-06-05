@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-
-
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -47,15 +45,4 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    /**
-     * Método para obtener el nombre completo
-     */
-    public function getNombreCompletoAttribute()
-    {
-        return "{$this->pri_nombre} {$this->seg_nombre} {$this->pri_apellido} {$this->seg_apellido}";
-    }
-
-
 }
-
-
