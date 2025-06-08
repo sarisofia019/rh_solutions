@@ -57,14 +57,13 @@ class CrudController extends Controller
         ], [
             'contraseña.regex' => 'Mínimo 5 números, al menos 1 letra minúscula,al menos 1 letra mayúscula,1 símbolo(Longitud entre 8 y 10 caracteres)'
         ]);
-
+      //  dd($request->all());
         try {
-            $sql = DB::insert(" insert into usuarios(tip_documento,
-        doc_usuario, pri_nombre, seg_nombre, pri_apellido, seg_apellido,
-        fec_nacimiento,tip_sangre, sex_usuario, estado_civil,cel_usuario,id_departamento, dir_usuario, id_municipio, cel_emer_usuario, correo_usuario,id_profesion,registro_profesional,id_cargo,contraseña,id_estado,id_eps, id_pension,
-        id_arl, id_caj_compen ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
-                $request->tip_documento,
+            $sql = DB::insert(" insert into usuarios(doc_usuario,
+        tip_documento, pri_nombre, seg_nombre, pri_apellido, seg_apellido,
+        fec_nacimiento,tip_sangre, sex_usuario, estado_civil,dir_usuario,cel_usuario,cel_emer_usuario,correo_usuario,registro_profesional,contraseña,id_departamento, id_municipio,id_estado,id_cargo,id_eps,id_pension,id_arl, id_caj_compen,id_profesion) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [
                 $request->num_documento,
+                $request->tip_documento,
                 $request->prim_nombre,
                 $request->segun_nombre,
                 $request->prim_apellido,
@@ -73,21 +72,21 @@ class CrudController extends Controller
                 $request->tip_sangre,
                 $request->sexo,
                 $request->est_civil,
-                $request->celular,
-                $request->departamento,
                 $request->direccion,
-                $request->munici_residen,
+                $request->celular,
                 $request->celular_emerg,
                 $request->correo,
-                $request->profesion,
                 $request->registro_profesional,
-                $request->cargo,
                 $request->contraseña,
+                $request->departamento,
+                $request->munici_residen,
                 $request->est_usuario,
+                $request->cargo,
                 $request->eps,
                 $request->pension,
                 $request->arl,
                 $request->caj_compen,
+                $request->profesion,
             ]);
         } catch (\Throwable $th) {
             $sql = 0;

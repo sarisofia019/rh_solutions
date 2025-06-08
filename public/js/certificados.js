@@ -36,4 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// quitar el alert despeus de unos segundos}
+setTimeout(function() {
+    $('.alert').fadeOut('slow');
+}, 3000); // Desaparece en 3 segundos
+
 

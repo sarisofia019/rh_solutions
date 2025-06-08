@@ -7,20 +7,17 @@
     <title>@yield('title') Panel de Usuario - RH Solutions</title>
     {{---michels---}}
       <meta name="csrf-token" content="{{ csrf_token() }}">
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/6e295b2b78.js" crossorigin="anonymous"></script>
     <!-- Enlace a css externo -->
     <link rel="stylesheet" href="{{ asset('css/gestionarUsuario.css') }}">
-
+    <link rel="stylesheet" href="{{asset('css/solicitud.css')}}">
+    <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
+    <link rel="stylesheet" href="{{asset('css/contratos.css')}}">
     <!--css responsive-->
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.4/css/responsive.bootstrap4.css">
-
     <!--datatable-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css"/>
     {{---michels---}}
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,20 +26,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <!-- FontAwesome (íconos) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
-     <!-- Incluir jQuery y Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/646ac4fad6.js" crossorigin="anonymous"></script>
+
     {{--script slect---}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/6e295b2b78.js" crossorigin="anonymous"></script>
-
-    <!--datatable-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.bootstrap4.css">
 </head>
 
 <body>
@@ -95,6 +84,19 @@
                         </div>
                     </li>
                 </ul>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#submenuContratos" role="button"
+                            aria-expanded="false" aria-controls="submenuContratos">
+                            <i class="fa-solid fa-folder-open"></i> Contratos
+                        </a>
+                        <div class="collapse ms-5" id="submenuContratos">
+                            <ul class="list-unstyled">
+                                <li><a class="nav-link px-0" href="{{route('admin.contratos')}}"><i class="fas fa-file-export me-2"></i>Crear y ver contratos</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
 
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#submenuCertificados" role="button"
@@ -103,9 +105,9 @@
                     </a>
                     <div class="collapse ms-5" id="submenuCertificados">
                         <ul class="list-unstyled">
-                            <li><a class="nav-link px-0" href=""><i class="fas fa-file-signature me-2"></i> Generar Certificados </a>
+                            <li><a class="nav-link px-0" href="{{route('admin.solicitud')}}"><i class="fas fa-file-signature me-2"></i> Autorizar Certificados </a>
                             </li>
-                            <li><a class="nav-link px-0" href="{{route('admin.solicitud')}}"><i class="fas fa-check-circle me-2"></i> Autorizar Certificados </a></li>
+                            <li><a class="nav-link px-0" href="{{route('admin.historial')}}"><i class="fas fa-check-circle me-2"></i> Historial de certificados </a></li>
                         </ul>
                     </div>
                 </li>
@@ -189,7 +191,13 @@
         });
     </script>
     <!-- Bootstrap JS -->
+     <!-- Incluir jQuery y Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/646ac4fad6.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     @stack('scripts')
 </body>
 

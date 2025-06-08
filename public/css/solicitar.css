@@ -4,12 +4,13 @@ body {
 }
 
 .contenedor {
-  max-width: 1000px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #ffff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5%;
 }
 
 h1 {

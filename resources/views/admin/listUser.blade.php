@@ -20,7 +20,7 @@
 
             <div class="modal-body">
 
-                @if(session('Correcto'))
+@if(session('Correcto'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('Correcto') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

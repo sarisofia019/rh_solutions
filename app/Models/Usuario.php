@@ -19,29 +19,31 @@ protected $table = 'usuarios';
     public $timestamps = false; // descativar las tablas create_at y update_at
 
     protected $fillable = [
-        'tip_documento',
         'doc_usuario',
+        'tip_documento',
         'pri_nombre',
         'seg_nombre',
         'pri_apellido',
         'seg_apellido',
         'fec_nacimiento',
+        'tip_sangre',
         'sex_usuario',
         'estado_civil',
         'dir_usuario',
-        'id_departamento',       // <-- se mueve la columna nueva
-        'id_municipio',
         'cel_usuario',
         'cel_emer_usuario',
         'correo_usuario',
-        'numero_registro_profesional',
-        'id_estado',
+        'registro_profesional',
         'contraseña',
+        'id_departamento',
+        'id_municipio',
+        'id_estado',
         'id_cargo',
         'id_eps',
         'id_pension',
         'id_arl',
-        'id_caj_compen'
+        'id_caj_compen',
+        'id_profesion'
     ];
 public function eps(){
     return $this->belongsTo(Eps::class,'id_eps');
@@ -75,5 +77,4 @@ public function municipio(){
 public function profesiones(){
     return $this->belongsTo(Profesion::class,'id_profesion');
 }
-
 }

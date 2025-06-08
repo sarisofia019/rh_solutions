@@ -3,11 +3,12 @@
 @section('title', 'Solicitar Certificados')
 @section('content')
  <div class="contenedor">
-    <h1>Certificados</h1>
+    <h1>Solicitar certificados</h1>
 
     <div class="mb-3">
+       <p>Seleccione el contrato que desea certificar</p>
       <input type="checkbox" id="selectAll" />
-      <label for="selectAll"><strong>Seleccionar todas</strong></label>
+      <label for="selectAll"><strong>Seleccionar todo</strong></label>
     </div>
 
     <table id="certTable" class="table table-bordered table-striped">
@@ -16,11 +17,10 @@
           <th style="background-color:rgb(4, 4, 110);">Seleccionar</th>
           <th style="background-color:rgb(4, 4, 110);">Documento </th>
           <th style="background-color:rgb(4, 4, 110);">Nombre</th>
-          <th style="background-color:rgb(4, 4, 110);">Tipo</th>
+         {{-- <th style="background-color:rgb(4, 4, 110);">Tipo</th>--}}
           <th style="background-color:rgb(4, 4, 110);">Fecha inicio</th>
           <th style="background-color:rgb(4, 4, 110);">Fecha finalización</th>
-          <th style="background-color:rgb(4, 4, 110);">Tiempo</th>
-          <th style="background-color:rgb(4, 4, 110);">Condiciones</th>
+          <th style="background-color:rgb(4, 4, 110);">Motivo de solicitud</th>
         </tr>
       </thead>
       <tbody>
@@ -28,26 +28,24 @@
           <td><input type="checkbox" class="casilla" /></td>
           <td>1106782939</td>
           <td>Luisa Lasso</td>
-          <td>Prestación servicios</td>
           <td>01/01/2025</td>
           <td></td>
-          <td>12 meses</td>
-          <td><button class="btn btn-sm btn-outline-primary">Ver</button></td>
+          <td><textarea name="" id="miTextarea" style="resize: none; overflow: auto; height: 70px; width: 200px;font-size:12px" placeholder="Escriba el motivo de porque solicita..."></textarea></td>
         </tr>
         <tr>
           <td><input type="checkbox" class="casilla" /></td>
           <td>110698275</td>
           <td>Angel Herrera</td>
-          <td>Prestación servicios</td>
           <td>01/01/2025</td>
           <td></td>
-          <td>12 meses</td>
-          <td><button class="btn btn-sm btn-outline-primary">Ver</button></td>
+          <td><textarea name="" id="miTextarea" style="resize: none; overflow: auto; height: 70px; width: 200px;">
+            </textarea></td>
+          {{--<button class="btn btn-sm btn-outline-primary">Ver</button>---}}
         </tr>
       </tbody>
       <tfoot>
   <tr>
-    <td colspan="8" style="text-align: right">
+    <td colspan="6" style="text-align: right">
      <button id="solicitarBtn" style="background-color: rgb(4, 4, 110); color: white; border: none; padding: 8px 16px; border-radius: 4px;">
         SOLICITAR
     </td>
@@ -84,4 +82,13 @@
       });
     });
   </script>
+  <script>
+    const textarea = document.getElementById("miTextarea");
+    textarea.addEventListener("mousedown", (e) => {
+        e.preventDefault(); // Evita el posicionamiento normal
+        textarea.setSelectionRange(0, 0); // Lleva el cursor al inicio
+        textarea.focus(); // Enfoca el textarea
+    });
+</script>
 @endpush
+@endsection

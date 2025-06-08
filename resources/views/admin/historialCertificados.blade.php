@@ -5,7 +5,7 @@
 <div class="container  table-custom">
         <div class="card mb-4">
             <div class="card-header py-3">
-                <h6 class="list-usuario">Solicitudes Certificados</h6>
+                <h6 class="list-usuario">Historial Certificados</h6>
             </div>
 
             <div class="card-body p-0">
@@ -28,10 +28,7 @@
                                 <td>Certificado laboral</td>
                                 <td>
                                     <button class="btn btn-sm btn-generar">
-                                        <i class="fas fa-file-pdf"></i> Generar
-                                    </button>
-                                    <button class="btn btn-sm btn-enviar">
-                                        <i class="fas fa-paper-plane"></i> Enviar
+                                        <i class="fas fa-file-pdf"></i> Ver en pdf
                                     </button>
                                 </td>
                             </tr>
