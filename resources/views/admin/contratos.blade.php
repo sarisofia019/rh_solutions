@@ -25,56 +25,59 @@
         </div>
 
     <!-- Tabla de Contratos -->
-    <table id="tablaContratos" class="table table-bordered table-light mt-3">
-        <thead class="table-primary">
-            <tr>
-                <th>ID</th>
-                <th>Documento</th>
-                <th>Nombre</th>
-                <th>Estado</th>
-                <th>Tipo de contrato</th>
-                <th>Tiempo</th>
-                <th>Fecha inicio</th>
-                <th>Fecha finalización</th>
-                <th>Salario</th>
-                <th>Estado contrato</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($contratos as $contrato)
-            <tr>
-                <td>{{ $contrato->id_contrato }}</td>
-                <td>{{ $contrato->usuario->doc_usuario }}</td>
-                <td>{{ $contrato->usuario->pri_nombre }} {{ $contrato->usuario->seg_nombre }} {{ $contrato->usuario->pri_apellido }} {{ $contrato->usuario->seg_apellido}}</td>
-                <td>{{$contrato->estadoContrato->nom_est_contrato}}</td>
-                <td>{{ $contrato->tipoContrato->nom_contrato }}</td>
-                <td>{{ $contrato->tiempoContrato->nom_tiemp_contrato }}</td>
-                <td>{{ $contrato->fec_ingreso->format('d/m/Y') }}</td>
-                <td>{{ $contrato->fec_finalizacion ? $contrato->fec_finalizacion->format('d/m/Y') : 'N/A' }}</td>
-                <td>${{ number_format($contrato->salario, 2, ',', '.') }}</td>
-                <td>{{ $contrato->estadoContrato->nom_est_contrato }}</td>
-                <td>
-                    <!-- Botón para generar certificado -->
-                    <!-- Botón Editar -->
-                    <button class="btn btn-warning btn-sm"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modalEditarContrato"
-                            data-id="{{ $contrato->id_contrato }}">
-                        Editar
-                    </button>
-                    <!-- Botón Eliminar -->
-                    <button class="btn btn-danger btn-sm"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modalEliminarContrato"
-                            data-id="{{ $contrato->id_contrato }}">
-                        Eliminar
-                    </button>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-bordered table-light mt-3" id="dataTable" width="100%">
+
+            <thead class="table-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>Documento</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Tipo de contrato</th>
+                    <th>Tiempo</th>
+                    <th>Fecha inicio</th>
+                    <th>Fecha finalización</th>
+                    <th>Salario</th>
+                    <th>Estado contrato</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($contratos as $contrato)
+                <tr>
+                    <td>{{ $contrato->id_contrato }}</td>
+                    <td>{{ $contrato->usuario->doc_usuario }}</td>
+                    <td>{{ $contrato->usuario->pri_nombre }} {{ $contrato->usuario->seg_nombre }} {{ $contrato->usuario->pri_apellido }} {{ $contrato->usuario->seg_apellido}}</td>
+                    <td>{{$contrato->estadoContrato->nom_est_contrato}}</td>
+                    <td>{{ $contrato->tipoContrato->nom_contrato }}</td>
+                    <td>{{ $contrato->tiempoContrato->nom_tiemp_contrato }}</td>
+                    <td>{{ $contrato->fec_ingreso->format('d/m/Y') }}</td>
+                    <td>{{ $contrato->fec_finalizacion ? $contrato->fec_finalizacion->format('d/m/Y') : 'N/A' }}</td>
+                    <td>${{ number_format($contrato->salario, 2, ',', '.') }}</td>
+                    <td>{{ $contrato->estadoContrato->nom_est_contrato }}</td>
+                    <td>
+                        <!-- Botón para generar certificado -->
+                        <!-- Botón Editar -->
+                        <button class="btn btn-warning btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalEditarContrato"
+                                data-id="{{ $contrato->id_contrato }}">
+                            Editar
+                        </button>
+                        <!-- Botón Eliminar -->
+                        <button class="btn btn-danger btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalEliminarContrato"
+                                data-id="{{ $contrato->id_contrato }}">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- MODAL PARA CREAR CONTRATO -->
@@ -388,5 +391,25 @@ $('#modalEditarContrato').on('show.bs.modal', function (event) {
         // Modifica la acción del formulario con el ID dinámico
         $('#formEliminarContrato').attr('action', '/contrato/delete/' + id);
     });
+</script>
+<script>
+      new DataTable('#dataTable', {
+            responsive: true,
+            autoWidth: false,
+            language: {
+                lengthMenu: "Mostrar _MENU_ registros",
+                infoFiltered: "(filtrado de _MAX_ registros totales)",
+                infoEmpty: "Mostrando 0 a 0 de 0 entradas",
+                info: "Página _PAGE_ de _PAGES_",
+                search: "Buscar:",
+                zeroRecords: "No se encontraron registros",
+                paginate: {
+                    first: "Primero",
+                    last: "Último",
+                    next: "Siguiente",
+                    previous: "Anterior"
+                }
+            }
+        });
 </script>
 @endpush

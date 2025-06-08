@@ -21,36 +21,29 @@
           <th style="background-color:rgb(4, 4, 110);">Fecha inicio</th>
           <th style="background-color:rgb(4, 4, 110);">Fecha finalización</th>
           <th style="background-color:rgb(4, 4, 110);">Motivo de solicitud</th>
+          <th style="background-color:rgb(4, 4, 110);">Acción</th>
         </tr>
       </thead>
       <tbody>
+        @foreach ($contratos as $contrato)
         <tr>
-          <td><input type="checkbox" class="casilla" /></td>
-          <td>1106782939</td>
-          <td>Luisa Lasso</td>
-          <td>01/01/2025</td>
-          <td></td>
-          <td><textarea name="" id="miTextarea" style="resize: none; overflow: auto; height: 70px; width: 200px;font-size:12px" placeholder="Escriba el motivo de porque solicita..."></textarea></td>
+            <td><input type="checkbox" class="casilla" /></td>
+            <td>{{ $contrato->usuario->doc_usuario }}</td>
+            <td>{{ $contrato->usuario->pri_nombre }} {{ $contrato->usuario->pri_apellido }}</td>
+            <td>{{ $contrato->fec_ingreso->format('d/m/Y') }}</td>
+            <td>{{ $contrato->fec_finalizacion ? $contrato->fec_finalizacion->format('d/m/Y') : 'N/A' }}</td>
+            <td>
+                <textarea name="motivo" class="motivoSolicitud"
+                    style="resize: none; overflow: auto; height: 70px; width: 200px;font-size:12px"
+                    placeholder="Escriba el motivo de la solicitud...">
+                </textarea>
+            </td>
+            <td>
+                <button id="solicitarBtn" style="background-color: rgb(4, 4, 110); color: white; border: none;border-radius: 4px;padding: 5px 5px 5px;font-size:13px">Solicitar certificado</button>
+            </td>
         </tr>
-        <tr>
-          <td><input type="checkbox" class="casilla" /></td>
-          <td>110698275</td>
-          <td>Angel Herrera</td>
-          <td>01/01/2025</td>
-          <td></td>
-          <td><textarea name="" id="miTextarea" style="resize: none; overflow: auto; height: 70px; width: 200px;">
-            </textarea></td>
-          {{--<button class="btn btn-sm btn-outline-primary">Ver</button>---}}
-        </tr>
+        @endforeach
       </tbody>
-      <tfoot>
-  <tr>
-    <td colspan="6" style="text-align: right">
-     <button id="solicitarBtn" style="background-color: rgb(4, 4, 110); color: white; border: none; padding: 8px 16px; border-radius: 4px;">
-        SOLICITAR
-    </td>
-  </tr>
-</tfoot>
     </table>
   </div>
 @push('scripts')

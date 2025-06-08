@@ -41,7 +41,7 @@ Route::middleware('auth:usuario')->group(function () {
     })->name('usuario.dashboard');
 
     //----------------------------- solicitar certificado ----------------------------------------//
-    Route::get('/solicitar',[SolicitarController::class,'view'])->name('user.solicitar');
+    Route::get('/solicitar', [SolicitarController::class, 'listarContratos'])->name('user.solicitar');
     //-------------------------------------------------------------------------------------------//
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////////
