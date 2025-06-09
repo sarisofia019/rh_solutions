@@ -44,7 +44,7 @@
 </head>
 <body>
     <div class="certificado">
-        <img src="{{ public_path('imgs/certificado_blanco.png') }}" width="100%" alt="Certificado">
+        <img src="{{ 'imgs/certificado_blanco.png' }}" width="100%" alt="Certificado">
     </div>
     <div class="certificado-texto">
             Que el(la) señor(a) <strong>{{ $nombreCompleto }}</strong>,

@@ -46,35 +46,35 @@ protected $table = 'usuarios';
         'id_profesion'
     ];
 public function eps(){
-    return $this->belongsTo(Eps::class,'id_eps');
+    return $this->belongsTo(Eps::class,'id_eps','id_eps');
 }
 
 public function pensiones(){
-    return $this->belongsTo(Pension::class,'id_pension');
+    return $this->belongsTo(Pension::class,'id_pension','id_pension');
 }
 public function arl(){
-    return $this->belongsTo(Arl::class,'id_arl');
+    return $this->belongsTo(Arl::class,'id_arl','id_arl');
 }
-public function cargos(){
-    return $this->belongsTo(Cargo::class,'id_cargo');
+public function cargo(){
+    return $this->belongsTo(Cargo::class,'id_cargo','id_cargo');
 }
 
 public function estado(){
-    return $this->belongsTo(EstadoUsuario::class,'id_estado');
+    return $this->belongsTo(EstadoUsuario::class,'id_estado','id_estado');
 }
 
 public function cajaCompensacion(){
-    return $this->belongsTo(CajaCompensacion::class,'id_caj_compen');
+    return $this->belongsTo(CajaCompensacion::class,'id_caj_compen','id_caj_compen');
 }
 
 public function departamentos(){
-    return $this->belongsTo(Departamento::class,'id_departamento');
+    return $this->belongsTo(Departamento::class,'id_departamento','id_departamento');
 }
 public function municipio(){
-    return $this->belongsTo(Municipio::class,'id_municipio');
+    return $this->belongsTo(Municipio::class,'id_municipio','id_municipio');
 }
 
 public function profesiones(){
-    return $this->belongsTo(Profesion::class,'id_profesion');
+    return $this->belongsTo(Profesion::class,'id_profesion','id_profesion');
 }
 }

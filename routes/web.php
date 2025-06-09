@@ -42,6 +42,8 @@ Route::middleware('auth:usuario')->group(function () {
 
     //----------------------------- solicitar certificado ----------------------------------------//
     Route::get('/solicitar', [SolicitarController::class, 'listarContratos'])->name('user.solicitar');
+    Route::post('/usuario/solicitar-certificado', [SolicitarController::class, 'guardarSolicitud'])->name('usuario.solicitar');
+
     //-------------------------------------------------------------------------------------------//
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,6 +93,9 @@ Route::middleware('auth:admin')->group(function () {
 
     //------------------------------------- ruta para las solicitudes y generar certificado----------------------------------//
     Route::get('/admin-solicitudes',[SolicitudController::class,'view'])->name('admin.solicitud');
+    Route::post('/admin/generar-certificado', [SolicitudController::class, 'generarCertificado'])->name('admin.generar');
+    Route::post('/admin/enviar-certificado', [SolicitudController::class, 'enviarCertificado'])->name('admin.enviar');
+
     //-----------------------------------------------------------------------------------------------------------------------//
 
     //-------------------------------------- ruta para crear y ver contratos-------------------------------------------------//
@@ -103,6 +108,7 @@ Route::middleware('auth:admin')->group(function () {
 
     // --------------------------------- rutas para historial certificados --------------------------------------------------//
     Route::get('/historial-certificados',[HistorialController::class,'view'])->name('admin.historial');
+    Route::get('/admin/ver-certificado/{id_contrato}', [HistorialController::class, 'verCertificado'])->name('admin.verCertificado');
     //-----------------------------------------------------------------------------------------------------------------------//
 });
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

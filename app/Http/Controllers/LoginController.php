@@ -24,14 +24,15 @@ class LoginController extends Controller
 
         // Verificar credenciales
         if ($user && Hash::check($request->password, $user->contraseña)) {
-            if ($user->id_cargo === 1) {// Admin: login con guard 'admin'
-                Auth::guard('admin')->login($user);
-                return redirect()->route('admin.dashboard');
-
-            } else {// Usuario normal: login con guard 'usuario'
+            if ($user->id_cargo != 1) {// Admin: login con guard 'admin'
                 Auth::guard('usuario')->login($user);
                 return redirect()->route('usuario.dashboard');
+
+            } else {// Usuario normal: login con guard 'usuario'
+                Auth::guard('admin')->login($user);
+                return redirect()->route('admin.dashboard');
             }
+
         }else{
             return back()
             ->withErrors(['login'=>'Usuario o contraseña incorrecta'])

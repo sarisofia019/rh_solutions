@@ -7,19 +7,20 @@
     background-color: rgb(2, 2, 77);
 }
 .btn-custom {
-    background-color: rgb(2, 2, 77); /* Color azul oscuro */
-    color: white; /* Texto blanco para contraste */
-    border: none; /* Sin bordes */
-    padding: 10px 20px; /* Espaciado interno */
-    font-size: 16px; /* Tamaño de texto */
-    border-radius: 6px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor de mano al pasar */
-    transition: background-color 0.3s ease; /* Transición suave al hacer hover */
+    background-color: rgb(2, 2, 77) !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    font-size: 16px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
 }
 
 .btn-custom:hover {
-    background-color: rgb(28, 21, 158); /* Un tono más oscuro al pasar el mouse */
+    background-color: rgb(28, 21, 158) !important;
 }
+
 .btn-close {
     filter: invert(1); /* Convierte el color a blanco */
 }
