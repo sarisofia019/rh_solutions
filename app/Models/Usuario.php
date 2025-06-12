@@ -76,4 +76,14 @@ public function profesiones(){
     return $this->belongsTo(Profesion::class,'id_profesion');
 }
 
+public function documentos()
+{
+    return $this->hasMany(Documento::class, 'id_usuario');
+}
+
+public function cargo()
+{
+    return $this->belongsTo(Cargo::class, 'id_cargo');
+}
+
 }

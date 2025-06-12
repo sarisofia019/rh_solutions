@@ -1,6 +1,6 @@
 @extends('admin.dashboard')
 
-@section('title', 'Lista de Usuarios')
+@section('tite', 'Lista de Usuarios')
 @section('content')
 
 <script>

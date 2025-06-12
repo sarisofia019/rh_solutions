@@ -24,5 +24,11 @@ class Cargo extends Model
         'id_cargo',
         'cargo',
     ];
+
+    public function documentosRequeridos()
+    {
+        return $this->hasMany(DocumentosRequeridos::class, 'id_cargo');
+    }
+
 }
 

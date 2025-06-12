@@ -9,7 +9,8 @@ use App\Http\Controllers\Admin\ValidacionController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Usuario\UsuarioAuthController;
-
+use App\Http\Controllers\Admin\DocumentoAsignacionController;
+use App\Http\Controllers\Usuario\DocumentoController;
 
 
 // Ruta de inicio de sesión (vista)
@@ -35,6 +36,8 @@ Route::middleware('auth:usuario')->group(function () {
     Route::get('/usuario/dashboard', function () {
         return view('user.dashboard'); // crea esta vista también
     })->name('usuario.dashboard');
+    Route::get('/documentos', [DocumentoController::class, 'index'])->name('usuario.documentos.index');
+    Route::post('/documentos/subir', [DocumentoController::class, 'upload'])->name('usuario.documentos.upload');
 });
 
 //-------------------------------------------------------------------------------------------------//
@@ -90,6 +93,14 @@ Route::middleware('auth:admin')->group(function () {
 
     //ruta para enlazar municipio con departamento
     Route::get('/municipios/{idDepartamento}', [RelacionesController::class, 'getMunicipios']);
+
+    // Admin: Asignar documentos a un cargo
+    Route::get('/documentos/asignar', [DocumentoAsignacionController::class, 'index'])->name('admin.documentos.index');
+    Route::post('/documentos/asignar', [DocumentoAsignacionController::class, 'guardarDocumentos'])->name('admin.guardar.documentos');
+
+
+
+
 
 });
 //////////////////////////////////////////////////////////////////////////////////////////////////
